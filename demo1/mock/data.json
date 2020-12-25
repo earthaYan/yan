@@ -1,0 +1,10 @@
+{
+    "getDetailById":{
+        "name":"圣代",
+        "age":35,
+        "alias":"sundae",
+        "works":[
+            "凯瑟琳","雨夜惊魂","书院来信","美杜莎庄园"
+        ]
+    }
+}
