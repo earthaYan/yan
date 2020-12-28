@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="card flex" >
     <div class="avatar">
       <img src="@/assets/logo.png" />
@@ -18,11 +19,12 @@
   <div>{{selected}}</div>
   <button  @click="overAction">点餐完成</button>
   <div>{{overText}}</div>
+  <div>
 </template>
 
 <script lang="ts">
 import { defineComponent ,watch,onBeforeMount,onMounted,onRenderTracked,onRenderTriggered,reactive, toRefs,ref} from 'vue';
-import {getDetailById} from '@/utils/api/card'
+import {getDetailById} from '../utils/api/card'
 interface DataProps{
   singer: {
     name?: string;

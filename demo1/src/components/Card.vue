@@ -1,4 +1,5 @@
 <template>
+<div>
     <div id="card">
         <div>姓名：{{data.singerData.value.name}}</div>
         <div>年龄:{{data.singerData.value.age}}</div>
@@ -9,10 +10,11 @@
     <div>
         {{work.selected}}
     </div>
+<div>
 </template>
 <script lang="ts">
 import {defineComponent, onMounted, ref,watch} from 'vue'
-import {getDetailById} from  '@/utils/api/card'
+import {getDetailById} from  '../utils/api/card'
 interface SingerProps{
     name: string;
     age: number;

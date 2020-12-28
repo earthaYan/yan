@@ -1,15 +1,21 @@
 <template>
+<div>
   <HelloWorld/>
+  <Time/>
+</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 // import HelloWorld from './components/HelloWorld.vue';
-import HelloWorld from './components/Card2.vue';
+import HelloWorld from './components/Card4.vue';
+import Time from './components/Time.vue';
+
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    Time
   }
 });
 </script>

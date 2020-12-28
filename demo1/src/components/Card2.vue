@@ -1,4 +1,5 @@
 <template>
+<div>
     <div id="card">
         <div>姓名:{{singerData.name}}</div>
         <div>年龄:{{singerData.age}}</div>
@@ -7,10 +8,11 @@
         <div @click="handleSelect(song)" v-for="song in singerData.works" :key="song">{{song}}</div>
     </div>
     {{selected }}
+    </div>
 </template>
 <script lang="ts">
 import {watch,defineComponent, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onRenderTracked, onRenderTriggered, onUnmounted, onUpdated, reactive, toRefs} from 'vue'
-import {getDetailById} from  '@/utils/api/card'
+import {getDetailById} from  '../utils/api/card'
 interface SingerProps{
     singerData: {
         name: string;
