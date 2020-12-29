@@ -1,7 +1,8 @@
 <template>
 <div>
-  <HelloWorld/>
-  <Time/>
+  <HelloWorld  v-if="false"/>
+  <Time v-if="false"/>
+  <Random/>
 </div>
 </template>
 
@@ -10,12 +11,13 @@ import { defineComponent } from 'vue';
 // import HelloWorld from './components/HelloWorld.vue';
 import HelloWorld from './components/Card4.vue';
 import Time from './components/Time.vue';
-
+import Random from './components/Random.vue'
 export default defineComponent({
   name: 'App',
   components: {
     HelloWorld,
-    Time
+    Time,
+    Random
   }
 });
 </script>
