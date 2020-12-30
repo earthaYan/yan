@@ -14,7 +14,7 @@ import useUrlAxios from '../hooks/useUrlAxios'
 export default defineComponent({
     setup(){
         const {result,loading,loaded}=useUrlAxios("https://apiblog.jspang.com/default/getGirl")
-
+        console.log(result,loading)
         return {
             result,
             loading,
