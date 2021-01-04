@@ -1,26 +1,10 @@
 <template>
-    <div  :class="['container',{ 'sign-up-mode': signUpMode }]">
+    <div :class="['container',{ 'sign-up-mode': signUpMode }]">
         <!-- 表单容器 -->
         <div class="form-container">
             <div class="sign">
                 <!-- 登录 -->
-                <el-form ref="loginForm" :model="loginUser" :rules="rules" label-width="100px" class="loginForm sign-in-form">
-                  <el-form-item label="邮箱" prop="email">
-                    <el-input v-model="loginUser.email"  placeholder="请输入邮箱"></el-input>
-                  </el-form-item>
-                  <el-form-item label="密码" prop="password">
-                    <el-input v-model="loginUser.password" type="password" placeholder="请输入密码"></el-input>
-                  </el-form-item>
-                  <el-form-item>
-                    <el-button @click="handleLogin('loginForm')" type="primary" class="submit-btn">提交</el-button>
-                  </el-form-item>
-                  <!-- 找回密码 -->
-                  <div class="tiparea">
-                    <p>忘记密码?
-                      <a>立即找回</a>
-                    </p>
-                  </div>
-                </el-form>
+                <login-form v-model:loginUser="loginUser" v-model:rules="rules"/>
                 <!-- 注册 -->
                 <!-- <div>注册</div> -->
             </div>  
@@ -49,28 +33,20 @@
     </div>
 </template>
 <script lang="ts">
-import {defineComponent,ref,getCurrentInstance} from 'vue'
-import {loginUser,rules,ctx} from '@/utils/loginValidate'
+import {defineComponent,ref} from 'vue'
+import {loginUser,rules} from '@/utils/loginValidate'
+import LoginForm from '@/components/LoginForm.vue'
 export default defineComponent({
     name:'Login',
+    components:{
+      LoginForm
+    },
     setup(){
       const signUpMode=ref<boolean>(false)
-      // 登录方法
-      const handleLogin=(formName: string)=>{
-        ctx.$refs[formName].validate((valid: boolean)=>{
-          if(valid){
-            console.log(valid)
-          }else{
-            console.log(valid)
-            return false
-          }
-        })
-      }
       return{
         signUpMode,
         rules,
-        loginUser,
-        handleLogin
+        loginUser
       }
     }
 })
@@ -400,27 +376,6 @@ export default defineComponent({
     left: 50%;
   }
 }
-/**
-form样式
- */
-.loginForm {
-  margin-top: 20px;
-  background-color: #fff;
-  padding: 20px 40px 20px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px #cccc;
-}
 
-.submit-btn {
-  width: 100%;
-}
-.tiparea {
-  text-align: right;
-  font-size: 12px;
-  color: #333;
-}
-.tiparea p a {
-  color: #409eff;
-}
 
 </style>

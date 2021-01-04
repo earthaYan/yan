@@ -1,4 +1,4 @@
-import {ref,getCurrentInstance} from 'vue'
+import {ref} from 'vue'
 interface User{
     email: string;
     password: string;
@@ -38,5 +38,3 @@ export const rules=ref({
     { min:6,max:30,message:'密码长度在6-30位之间',trigger:'blur'}
   ]
 })
-// @ts-ignore 忽略系统提供的方法返回类型
-export const {ctx}=getCurrentInstance()
