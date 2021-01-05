@@ -6,7 +6,7 @@
                 <!-- 登录 -->
                 <login-form v-model:loginUser="loginUser" v-model:rules="rules"/>
                 <!-- 注册 -->
-                <!-- <div>注册</div> -->
+                <register-form v-model:registerUser="registerUser" v-model:registerRules="registerRules"/>
             </div>  
         </div>
         <div>
@@ -35,18 +35,23 @@
 <script lang="ts">
 import {defineComponent,ref} from 'vue'
 import {loginUser,rules} from '@/utils/loginValidate'
+import {registerUser,registerRules} from '@/utils/registerValidate'
 import LoginForm from '@/components/LoginForm.vue'
+import RegisterForm from '@/components/registerForm.vue'
 export default defineComponent({
     name:'Login',
     components:{
-      LoginForm
+      LoginForm,
+      RegisterForm
     },
     setup(){
       const signUpMode=ref<boolean>(false)
       return{
         signUpMode,
         rules,
-        loginUser
+        loginUser,
+        registerUser,
+        registerRules
       }
     }
 })
@@ -65,6 +70,10 @@ export default defineComponent({
   height: 100%;
   top: 0;
   left: 0;
+}
+.sign-up-mode .form-container{
+  right: 50%;
+  left: inherit;
 }
 .sign {
   position: absolute;
@@ -376,6 +385,30 @@ export default defineComponent({
     left: 50%;
   }
 }
+/**控制login和register显示 */
+form{
+  padding-right: 0 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+}
+form.sign-in-form{
+  z-index: 2;
+}
+form.sign-up-form{
+  opacity: 0;
+  z-index: 1;
+}
+/* register */
+.registerForm {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px 40px 20px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px #cccc;
+}
 
+.submit-btn {
+  width: 100%;
+}
 
 </style>

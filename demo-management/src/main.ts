@@ -4,5 +4,9 @@ import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css';
+import service from '@/utils/api/http'
 import '@/assets/css/base.css'
-createApp(App).use(store).use(router).use(ElementPlus).mount('#app')
+const app=createApp(App)
+// 挂载到全局
+app.config.globalProperties.$axios=service
+app.use(store).use(router).use(ElementPlus).mount('#app')

@@ -18,7 +18,9 @@
     </el-form>
 </template>
 <script lang="ts">
+import { loginUser } from '@/utils/loginValidate'
 import {defineComponent,getCurrentInstance} from 'vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
     name:'LoginForm',
     props:{
@@ -31,10 +33,10 @@ export default defineComponent({
             required:true
         }
     },
-    setup(){
-        
+    setup(props){
       // @ts-ignore 忽略系统提供的方法返回类型
       const {ctx}=getCurrentInstance()
+      const router = useRouter()
     //   直接使用v-model也是一种运算,会报错Unexpected mutation of 'loginUser'  prop  
       const loginUserT=ctx.loginUser
       const rulesT=ctx.rules
@@ -42,9 +44,26 @@ export default defineComponent({
       const handleLogin=(formName: string)=>{
         ctx.$refs[formName].validate((valid: boolean)=>{
           if(valid){
-            console.log(valid)
+            ctx.$axios.post('/api/v1/auth/login',props.loginUser).then((res: any) =>{
+              ctx.$message({
+                  message:"登录成功",
+                  type:'success'
+              })
+              // 登录成功，保存token
+              const {token} = res.data
+              localStorage.setItem('login_token',token)
+              router.push('/')
+            }).catch((error: any)=>{
+              ctx.$message({
+                message:error.message,
+                type:'error'
+              })
+            })
           }else{
-            console.log(valid)
+            ctx.$message({
+              message:'登录失败',
+              type:'error'
+            })
             return false
           }
         })
